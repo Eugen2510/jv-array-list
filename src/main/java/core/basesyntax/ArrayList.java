@@ -3,7 +3,7 @@ package core.basesyntax;
 import java.util.Objects;
 
 public class ArrayList<T> implements List<T> {
-    private final static int MIN_CAPACITY = 10;
+    private static final int MIN_CAPACITY = 10;
     private int currentCapacity;
     private Object[] data;
     private int size;
