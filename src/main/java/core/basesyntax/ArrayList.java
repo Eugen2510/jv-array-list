@@ -1,5 +1,6 @@
 package core.basesyntax;
 
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class ArrayList<T> implements List<T> {
@@ -70,7 +71,10 @@ public class ArrayList<T> implements List<T> {
                 break;
             }
         }
-        return index == -1 ? null : remove(index);
+        if (index == -1) {
+            throw new NoSuchElementException();
+        }
+        return remove(index);
     }
 
     @Override
