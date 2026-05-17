@@ -1,7 +1,6 @@
 package core.basesyntax;
 
 import java.util.NoSuchElementException;
-import java.util.Objects;
 
 public class ArrayList<T> implements List<T> {
     private static final int MIN_CAPACITY = 10;
@@ -66,13 +65,13 @@ public class ArrayList<T> implements List<T> {
     public T remove(T element) {
         int index = -1;
         for (int i = 0; i < size; i++) {
-            if (Objects.equals(data[i], element)) {
+            if (compareElements((T) data[i], element)) {
                 index = i;
                 break;
             }
         }
         if (index == -1) {
-            throw new NoSuchElementException();
+            throw new NoSuchElementException("Element not found: " + element);
         }
         return remove(index);
     }
@@ -101,5 +100,12 @@ public class ArrayList<T> implements List<T> {
         if (index < 0 || index > size - 1) {
             throw new ArrayListIndexOutOfBoundsException("Index: " + index + ", size: " + size);
         }
+    }
+
+    private boolean compareElements(T currentEl, T searchedEl) {
+        if (currentEl == null) {
+            return null == searchedEl;
+        }
+        return currentEl.equals(searchedEl);
     }
 }
